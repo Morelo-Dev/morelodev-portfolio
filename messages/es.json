@@ -7,7 +7,9 @@
     "experience": "Experiencia",
     "contact": "Contacto",
     "toggleTheme": "Cambiar tema",
-    "toggleLanguage": "English"
+    "toggleLanguage": "English",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú"
   },
   "hero": {
     "greeting": "Hola, soy",
