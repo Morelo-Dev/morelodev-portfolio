@@ -13,20 +13,28 @@ const schema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
   message: z.string().min(10),
+  _hp: z.string(),
+  _t: z.number(),
 })
 type FormData = z.infer<typeof schema>
 
 export default function Contact() {
   const t = useTranslations('contact')
   const locale = useLocale()
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'rate-limit'>(
+    'idle'
+  )
+  const [loadedAt] = useState<number>(() => Date.now())
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) })
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { _hp: '', _t: 0 },
+  })
 
   async function onSubmit(data: FormData) {
     setStatus('loading')
@@ -34,8 +42,12 @@ export default function Contact() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, _t: loadedAt }),
       })
+      if (res.status === 429) {
+        setStatus('rate-limit')
+        return
+      }
       if (!res.ok) throw new Error()
       setStatus('success')
       reset()
@@ -229,6 +241,34 @@ export default function Contact() {
                     </p>
                   )}
                 </div>
+
+                {/* Honeypot — invisible para humanos, bots lo llenan */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-[9999px] opacity-0"
+                  tabIndex={-1}
+                >
+                  <label htmlFor="_hp">Dejar vacío</label>
+                  <input
+                    id="_hp"
+                    type="text"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    {...register('_hp')}
+                  />
+                </div>
+
+                {status === 'rate-limit' && (
+                  <p
+                    role="alert"
+                    className="flex items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2.5 text-sm text-yellow-700 dark:border-yellow-900/50 dark:bg-yellow-950/30 dark:text-yellow-400"
+                  >
+                    <AlertCircle size={14} aria-hidden="true" />
+                    {locale === 'es'
+                      ? 'Demasiados intentos. Vuelve en una hora.'
+                      : 'Too many attempts. Try again in an hour.'}
+                  </p>
+                )}
 
                 {status === 'error' && (
                   <p
