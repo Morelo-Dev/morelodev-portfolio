@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowDown, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Terminal from '@/components/ui/Terminal'
 
 const TITLES = ['Software Developer', 'Frontend Engineer', 'Full Stack Dev', 'Problem Solver']
 
@@ -24,7 +25,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[88vh] flex-col items-center justify-center overflow-hidden px-6 pt-16"
+      className="relative flex min-h-[88vh] flex-col justify-center overflow-hidden px-6 pt-20"
       aria-label="Presentación"
     >
       {/* Grid background */}
@@ -36,138 +37,156 @@ export default function Hero() {
       {/* Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/3 left-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/20"
+        className="pointer-events-none absolute top-1/3 left-1/4 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/20"
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl text-center">
-        {/* Badge */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-1.5 backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-900/80"
-        >
-          <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" aria-hidden="true" />
-          <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400">
-            {locale === 'es' ? 'Disponible para proyectos' : 'Available for projects'}
-          </span>
-        </motion.div>
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left: text content */}
+          <div>
+            {/* Badge */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0}
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-1.5 backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-900/80"
+            >
+              <span
+                className="h-2 w-2 animate-pulse rounded-full bg-green-500"
+                aria-hidden="true"
+              />
+              <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400">
+                {locale === 'es' ? 'Disponible para proyectos' : 'Available for projects'}
+              </span>
+            </motion.div>
 
-        {/* Greeting */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.1}
-          className="mb-2 font-mono text-sm text-zinc-500 dark:text-zinc-400"
-        >
-          {t('greeting')}
-        </motion.p>
+            {/* Greeting */}
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.1}
+              className="mb-1 font-mono text-sm text-zinc-500 dark:text-zinc-400"
+            >
+              {t('greeting')}
+            </motion.p>
 
-        {/* Name */}
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.2}
-          className="mb-2 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50"
-        >
-          {t('name')}
-        </motion.h1>
+            {/* Name */}
+            <motion.h1
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.2}
+              className="mb-3 text-5xl font-bold tracking-tight text-zinc-900 sm:text-6xl dark:text-zinc-50"
+            >
+              {t('name')}
+            </motion.h1>
 
-        {/* Animated title */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.3}
-          className="mb-4 h-7 overflow-hidden"
-          aria-label={t('title')}
-        >
-          <AnimatedTitles titles={TITLES} />
-        </motion.div>
+            {/* Animated title */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.3}
+              className="mb-5 h-8 overflow-hidden"
+              aria-label={t('title')}
+            >
+              <AnimatedTitles titles={TITLES} />
+            </motion.div>
 
-        {/* Subtitle */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.4}
-          className="mx-auto mb-6 max-w-xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400"
-        >
-          {t('subtitle')}
-        </motion.p>
+            {/* Subtitle */}
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.4}
+              className="mb-8 max-w-lg text-base leading-relaxed text-zinc-600 dark:text-zinc-400"
+            >
+              {t('subtitle')}
+            </motion.p>
 
-        {/* CTAs */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.5}
-          className="flex flex-wrap items-center justify-center gap-3"
-        >
-          <Link
-            href={`/${locale}/projects`}
-            className={cn(
-              'inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white',
-              'transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20',
-              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
-            )}
+            {/* CTAs */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.5}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <Link
+                href={`/${locale}/projects`}
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-medium text-white',
+                  'transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20',
+                  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+                )}
+              >
+                {t('cta_projects')}
+                <ArrowDown size={14} aria-hidden="true" />
+              </Link>
+
+              <a
+                href="/cv-jorge-morelo.pdf"
+                download
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-6 py-3 text-sm font-medium text-zinc-700',
+                  'transition-all hover:border-zinc-400 hover:bg-zinc-50',
+                  'dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800',
+                  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+                )}
+              >
+                <Download size={14} aria-hidden="true" />
+                {t('cta_cv')}
+              </a>
+            </motion.div>
+
+            {/* Social links */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.6}
+              className="mt-8 flex items-center gap-4"
+            >
+              <a
+                href="https://github.com/Morelo-Dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub de Jorge Morelo"
+                className="text-zinc-400 transition-all hover:scale-110 hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                <IconGitHub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/morelodev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de Jorge Morelo"
+                className="text-zinc-400 transition-all hover:scale-110 hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                <IconLinkedIn />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right: terminal */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' as const }}
+            className="hidden lg:block"
           >
-            {t('cta_projects')}
-            <ArrowDown size={14} aria-hidden="true" />
-          </Link>
-
-          <a
-            href="/cv-jorge-morelo.pdf"
-            download
-            className={cn(
-              'inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-5 py-2.5 text-sm font-medium text-zinc-700',
-              'transition-all hover:border-zinc-400 hover:bg-zinc-50',
-              'dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800',
-              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
-            )}
-          >
-            <Download size={14} aria-hidden="true" />
-            {t('cta_cv')}
-          </a>
-        </motion.div>
-
-        {/* Social links */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.6}
-          className="mt-6 flex items-center justify-center gap-4"
-        >
-          <a
-            href="https://github.com/Morelo-Dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub de Jorge Morelo"
-            className="text-zinc-400 transition-all hover:scale-110 hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
-            <IconGitHub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/morelodev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn de Jorge Morelo"
-            className="text-zinc-400 transition-all hover:scale-110 hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
-            <IconLinkedIn />
-          </a>
-        </motion.div>
+            <Terminal />
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1.4 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         aria-hidden="true"
       >

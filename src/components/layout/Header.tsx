@@ -5,11 +5,11 @@ import { useTranslations, useLocale } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { usePathname, useRouter } from 'next/navigation'
 import { Moon, Sun, Menu, X } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-const NAV_LINKS = ['projects', 'skills', 'blog', 'contact'] as const
+const NAV_LINKS = ['experience', 'projects', 'skills', 'blog', 'contact'] as const
 
 export default function Header() {
   const t = useTranslations('nav')
@@ -27,9 +27,8 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => {
-    setMounted(true)
+  useLayoutEffect(() => {
+    setMounted(true) // eslint-disable-line react-hooks/set-state-in-effect
   }, [])
 
   function toggleLocale() {

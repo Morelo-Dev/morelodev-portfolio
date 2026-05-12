@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero'
+import Experience from '@/components/sections/Experience'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
 import BlogPreview from '@/components/sections/BlogPreview'
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <main id="main-content">
       <Hero />
+      <Experience />
       <Projects />
       <Skills />
       <BlogPreview posts={posts} />
