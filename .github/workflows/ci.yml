@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Calidad de código
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+
+      - name: Verificar tipos TypeScript
+        run: pnpm type-check
+
+      - name: Lint ESLint
+        run: pnpm lint
+
+      - name: Verificar formato Prettier
+        run: pnpm format:check
+
+      - name: Tests unitarios
+        run: pnpm test
+
+      - name: Build de producción
+        run: pnpm build
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}

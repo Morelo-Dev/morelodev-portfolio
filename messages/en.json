@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "blog": "Blog",
+    "contact": "Contact",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Español"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Jorge Morelo",
+    "title": "Software Developer",
+    "subtitle": "I build digital products with clean code, solid architecture, and attention to detail.",
+    "cta_projects": "View projects",
+    "cta_cv": "Download CV"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A selection of recent work",
+    "live": "Live demo",
+    "code": "Source code",
+    "view_all": "View all"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and tools I work with"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Technical articles and thoughts on development",
+    "read_more": "Read article",
+    "min_read": "min read"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a project in mind? Let's talk.",
+    "name": "Name",
+    "email": "Email address",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent! I'll get back to you soon.",
+    "error": "Something went wrong. Please try again.",
+    "name_required": "Name is required",
+    "email_invalid": "Invalid email address",
+    "message_required": "Message is required"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "built_with": "Built with Next.js and Tailwind CSS"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to main content",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "toggleTheme": "Cambiar tema",
+    "toggleLanguage": "English"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Jorge Morelo",
+    "title": "Desarrollador de Software",
+    "subtitle": "Construyo productos digitales con código limpio, arquitectura sólida y atención al detalle.",
+    "cta_projects": "Ver proyectos",
+    "cta_cv": "Descargar CV"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Selección de trabajos recientes",
+    "live": "Demo en vivo",
+    "code": "Código fuente",
+    "view_all": "Ver todos"
+  },
+  "skills": {
+    "title": "Habilidades",
+    "subtitle": "Tecnologías y herramientas con las que trabajo"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos técnicos y reflexiones sobre desarrollo",
+    "read_more": "Leer artículo",
+    "min_read": "min de lectura"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente? Hablemos.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado! Te responderé pronto.",
+    "error": "Hubo un error. Intenta de nuevo.",
+    "name_required": "El nombre es requerido",
+    "email_invalid": "Correo electrónico inválido",
+    "message_required": "El mensaje es requerido"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "built_with": "Construido con Next.js y Tailwind CSS"
+  },
+  "accessibility": {
+    "skip_to_content": "Ir al contenido principal",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú"
+  }
+}
