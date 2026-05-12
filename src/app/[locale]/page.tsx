@@ -1,5 +1,6 @@
 import Hero from '@/components/sections/Hero'
 import Stats from '@/components/sections/Stats'
+import About from '@/components/sections/About'
 import Experience from '@/components/sections/Experience'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
@@ -14,6 +15,7 @@ export default function HomePage() {
     <main id="main-content">
       <Hero />
       <Stats />
+      <About />
       <Experience />
       <Projects />
       <Skills />
