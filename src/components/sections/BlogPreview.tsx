@@ -16,13 +16,13 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
   const locale = useLocale()
 
   return (
-    <section id="blog" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="blog" className="mx-auto max-w-6xl px-6 py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
         <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
           {'// '}

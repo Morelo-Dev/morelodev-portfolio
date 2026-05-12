@@ -22,14 +22,14 @@ export default function Skills() {
       id="skills"
       className="border-t border-zinc-100 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50"
     >
-      <div className="mx-auto max-w-5xl px-6 py-24">
+      <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-8"
         >
           <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
             {'// '}
@@ -41,7 +41,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Categorías */}
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {(Object.entries(skillsByCategory) as [string, typeof skillsByCategory.frontend][]).map(
             ([cat, items], ci) => (
               <motion.div

@@ -27,18 +27,18 @@ export default async function BlogPostPage({ params }: Props) {
   const locale = await getLocale()
 
   return (
-    <main id="main-content" className="mx-auto max-w-2xl px-6 py-24">
+    <main id="main-content" className="mx-auto max-w-3xl px-6 py-14">
       {/* Back */}
       <Link
         href={`/${locale}/blog`}
-        className="mb-10 inline-flex items-center gap-2 font-mono text-sm text-zinc-500 transition-colors hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
+        className="mb-6 inline-flex items-center gap-2 font-mono text-sm text-zinc-500 transition-colors hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
       >
         <ArrowLeft size={14} aria-hidden="true" />
         {locale === 'es' ? 'Volver al blog' : 'Back to blog'}
       </Link>
 
       {/* Header */}
-      <header className="mb-10">
+      <header className="mb-6">
         <div className="mb-4 flex flex-wrap gap-1.5">
           {(post.data.tags as string[]).map((tag: string) => (
             <span
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </header>
 
-      <hr className="mb-10 border-zinc-100 dark:border-zinc-800" />
+      <hr className="mb-6 border-zinc-100 dark:border-zinc-800" />
 
       {/* Contenido MDX */}
       <article className="prose prose-zinc dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-blue-600 prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm dark:prose-a:text-blue-400 dark:prose-code:bg-zinc-800 max-w-none">

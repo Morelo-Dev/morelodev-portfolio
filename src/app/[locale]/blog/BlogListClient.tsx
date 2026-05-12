@@ -25,12 +25,12 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
   )
 
   return (
-    <main id="main-content" className="mx-auto max-w-3xl px-6 py-24">
+    <main id="main-content" className="mx-auto max-w-4xl px-6 py-14">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
         <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
           {'// '}
@@ -42,7 +42,7 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
       </motion.div>
 
       {/* Tags */}
-      <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filtrar por etiqueta">
+      <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="Filtrar por etiqueta">
         {allTags.map((tag) => (
           <button
             key={tag}

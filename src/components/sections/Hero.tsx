@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20"
+      className="relative flex min-h-[88vh] flex-col items-center justify-center overflow-hidden px-6 pt-16"
       aria-label="Presentación"
     >
       {/* Grid background */}
@@ -46,7 +46,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-1.5 backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-900/80"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 px-4 py-1.5 backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-900/80"
         >
           <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" aria-hidden="true" />
           <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400">
@@ -71,7 +71,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.2}
-          className="mb-4 text-5xl font-bold tracking-tight text-zinc-900 sm:text-6xl dark:text-zinc-50"
+          className="mb-2 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50"
         >
           {t('name')}
         </motion.h1>
@@ -82,7 +82,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.3}
-          className="mb-6 h-8 overflow-hidden"
+          className="mb-4 h-7 overflow-hidden"
           aria-label={t('title')}
         >
           <AnimatedTitles titles={TITLES} />
@@ -94,7 +94,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.4}
-          className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400"
+          className="mx-auto mb-6 max-w-xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400"
         >
           {t('subtitle')}
         </motion.p>
@@ -140,7 +140,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.6}
-          className="mt-10 flex items-center justify-center gap-4"
+          className="mt-6 flex items-center justify-center gap-4"
         >
           <a
             href="https://github.com/Morelo-Dev"

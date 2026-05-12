@@ -64,7 +64,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="border-t border-zinc-100 dark:border-zinc-800">
-      <div className="mx-auto max-w-5xl px-6 py-24">
+      <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           {/* Left */}
           <motion.div

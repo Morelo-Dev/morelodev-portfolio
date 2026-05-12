@@ -12,14 +12,14 @@ export default function Projects() {
   const locale = useLocale()
 
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
         <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
           {'// '}
@@ -31,7 +31,7 @@ export default function Projects() {
       </motion.div>
 
       {/* Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {featuredProjects.map((project, i) => (
           <motion.div
             key={project.id}

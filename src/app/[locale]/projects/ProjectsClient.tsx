@@ -24,13 +24,13 @@ export default function ProjectsClient() {
   )
 
   return (
-    <main id="main-content" className="mx-auto max-w-5xl px-6 py-24">
+    <main id="main-content" className="mx-auto max-w-6xl px-6 py-14">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
         <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
           {'// '}
@@ -46,7 +46,7 @@ export default function ProjectsClient() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-10 flex flex-wrap gap-2"
+        className="mb-6 flex flex-wrap gap-2"
         role="group"
         aria-label="Filtrar por tecnología"
       >
@@ -68,7 +68,7 @@ export default function ProjectsClient() {
 
       {/* Grid */}
       <AnimatePresence mode="popLayout">
-        <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((project, i) => (
             <motion.div
               key={project.id}

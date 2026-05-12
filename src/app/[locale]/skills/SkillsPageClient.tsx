@@ -25,12 +25,12 @@ export default function SkillsPageClient() {
     activeCategory === ALL ? skills : skills.filter((s) => s.category === activeCategory)
 
   return (
-    <main id="main-content" className="mx-auto max-w-5xl px-6 py-24">
+    <main id="main-content" className="mx-auto max-w-6xl px-6 py-14">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
         <p className="mb-2 font-mono text-sm text-blue-600 dark:text-blue-400">
           {'// '}
@@ -42,7 +42,7 @@ export default function SkillsPageClient() {
       </motion.div>
 
       {/* Filtros */}
-      <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría">
+      <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -60,7 +60,7 @@ export default function SkillsPageClient() {
       </div>
 
       {/* Skills list */}
-      <motion.ul layout className="grid gap-x-12 gap-y-5 sm:grid-cols-2" role="list">
+      <motion.ul layout className="grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
         {filtered.map((skill, i) => (
           <motion.div
             key={skill.name}
