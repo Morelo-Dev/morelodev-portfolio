@@ -89,13 +89,6 @@ export default function Contact() {
             {/* Links directos */}
             <div className="space-y-3">
               <a
-                href="mailto:jorge.morelo@siempre.net.co"
-                className="flex items-center gap-3 font-mono text-sm text-zinc-600 transition-colors hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
-              >
-                <span className="text-zinc-300 dark:text-zinc-700">→</span>
-                jorge.morelo@siempre.net.co
-              </a>
-              <a
                 href="https://www.linkedin.com/in/morelodev/"
                 target="_blank"
                 rel="noopener noreferrer"
