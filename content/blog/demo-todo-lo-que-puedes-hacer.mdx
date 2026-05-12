@@ -1,0 +1,151 @@
+---
+title: "Demo completo: todo lo que puedes hacer en este blog"
+excerpt: "Video embebido, descarga real, oferta, cajas de aviso, código resaltado, tablas y más. Un post para probar cada componente disponible."
+date: "2026-05-11"
+tags: ["Demo", "Blog", "Recursos"]
+published: true
+type: "resource"
+badge: "NUEVO"
+downloadUrl: "/downloads/cheatsheet-git-esencial.txt"
+downloadLabel: "Descargar Cheatsheet Git"
+---
+
+Este post existe para mostrar todo lo que se puede hacer en el blog. Úsalo como referencia cuando vayas a crear contenido nuevo.
+
+---
+
+## 1. Descarga directa de archivo
+
+El componente `DownloadCard` muestra un botón de descarga con descripción. El archivo vive en `public/downloads/`.
+
+<DownloadCard
+  url="/downloads/cheatsheet-git-esencial.txt"
+  label="Cheatsheet Git Esencial"
+  description="Los comandos que más uso en el día a día — configuración, flujo, ramas, stash y tips pro."
+  size="2 KB · .txt"
+/>
+
+---
+
+## 2. Video de YouTube embebido
+
+El componente `VideoEmbed` acepta URLs de YouTube o Vimeo y las convierte automáticamente en un reproductor limpio.
+
+<VideoEmbed
+  url="https://www.youtube.com/watch?v=tv-_1er1mWI"
+  title="10 Design Patterns en JavaScript — Fireship"
+/>
+
+---
+
+## 3. Código resaltado
+
+Bloques de código con sintaxis highlighting real gracias a `rehype-highlight`.
+
+```typescript
+// Ejemplo: patrón Observer en TypeScript
+type Listener<T> = (data: T) => void
+
+class EventEmitter<T> {
+  private listeners: Listener<T>[] = []
+
+  subscribe(fn: Listener<T>) {
+    this.listeners.push(fn)
+    return () => {
+      this.listeners = this.listeners.filter((l) => l !== fn)
+    }
+  }
+
+  emit(data: T) {
+    this.listeners.forEach((fn) => fn(data))
+  }
+}
+
+const emitter = new EventEmitter<string>()
+const unsubscribe = emitter.subscribe((msg) => console.log(msg))
+emitter.emit('Hola mundo')
+unsubscribe()
+```
+
+```bash
+# También funciona con bash
+pnpm install
+pnpm dev
+git commit -m "feat: algo increíble"
+```
+
+---
+
+## 4. Cajas de aviso
+
+<InfoBox type="info">
+  Este es un aviso informativo. Úsalo para aclaraciones, contexto adicional o datos que el lector debe tener en cuenta pero no son críticos.
+</InfoBox>
+
+<InfoBox type="warning">
+  Este es un aviso de advertencia. Úsalo para errores comunes, cosas que pueden salir mal o pasos que no se deben saltarse.
+</InfoBox>
+
+---
+
+## 5. Tablas
+
+Markdown estándar, renderizado con estilos limpios.
+
+| Componente | Uso | Props requeridas |
+|---|---|---|
+| `VideoEmbed` | Videos YouTube/Vimeo | `url` |
+| `DownloadCard` | Descarga de archivos | `url`, `label` |
+| `OfferCard` | Vender o promocionar algo | `title`, `ctaUrl` |
+| `CallToAction` | Botón de acción central | `href`, `label` |
+| `InfoBox` | Avisos info o warning | `children`, `type` |
+
+---
+
+## 6. Listas y formato
+
+Markdown completo funciona igual:
+
+- **Negrita** para destacar términos clave
+- *Cursiva* para énfasis suave
+- `código inline` para comandos o variables
+- ~~tachado~~ para cosas obsoletas
+
+Lista numerada:
+
+1. Primero define el problema
+2. Luego escribe el test
+3. Después escribe el código
+4. Refactoriza
+
+---
+
+## 7. Card de oferta / producto
+
+Úsalo cuando quieras promocionar un servicio, curso, consultoría o cualquier cosa que vendas.
+
+<OfferCard
+  title="Mentoría 1:1 — Desarrollo Web"
+  description="Sesión de 1 hora para revisar tu código, orientarte en tu carrera o resolver un problema técnico específico."
+  priceLabel="$30 USD / sesión"
+  ctaLabel="Agendar sesión"
+  ctaUrl="https://www.linkedin.com/in/morelodev/"
+  features={[
+    "Revisión de código en vivo",
+    "Orientación de carrera personalizada",
+    "Resolución de problemas técnicos",
+    "Grabación de la sesión incluida"
+  ]}
+/>
+
+---
+
+## 8. Call to action
+
+Para cerrar un post con un botón que lleva a donde quieras: LinkedIn, GitHub, un formulario, otro post.
+
+<CallToAction
+  href="https://www.linkedin.com/in/morelodev/"
+  label="Conecta conmigo en LinkedIn"
+  description="¿Tienes preguntas o quieres trabajar juntos? Escríbeme directamente."
+/>

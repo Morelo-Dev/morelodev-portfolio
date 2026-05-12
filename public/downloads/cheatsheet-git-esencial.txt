@@ -1,0 +1,65 @@
+=========================================
+  CHEATSHEET GIT ESENCIAL — morelodev
+  jorge.dev · linkedin.com/in/morelodev
+=========================================
+
+── CONFIGURACIÓN INICIAL ──────────────────
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+git config --global core.editor "code --wait"
+
+── FLUJO BÁSICO ───────────────────────────
+git init                    # Inicializar repo
+git clone <url>             # Clonar repositorio
+git status                  # Estado del working tree
+git add .                   # Stagear todos los cambios
+git add <archivo>           # Stagear archivo específico
+git commit -m "mensaje"     # Hacer commit
+git push origin main        # Subir cambios
+git pull                    # Bajar cambios
+
+── RAMAS ──────────────────────────────────
+git branch                  # Listar ramas
+git branch <nombre>         # Crear rama
+git checkout -b <nombre>    # Crear y cambiar a rama
+git switch <nombre>         # Cambiar de rama (moderno)
+git merge <rama>            # Mergear rama al branch actual
+git branch -d <nombre>      # Eliminar rama local
+git push origin --delete <nombre>  # Eliminar rama remota
+
+── DESHACER COSAS ─────────────────────────
+git restore <archivo>       # Descartar cambios en working dir
+git restore --staged <arch> # Quitar del staging
+git revert <commit>         # Revertir commit (seguro)
+git reset --soft HEAD~1     # Deshacer último commit, mantener cambios
+git reset --hard HEAD~1     # Deshacer último commit, borrar cambios ⚠️
+
+── HISTORIAL ──────────────────────────────
+git log --oneline           # Log compacto
+git log --oneline --graph   # Log con árbol de ramas
+git diff                    # Diferencias sin stagear
+git diff --staged           # Diferencias en staging
+git show <commit>           # Ver detalles de un commit
+
+── STASH ──────────────────────────────────
+git stash                   # Guardar cambios temporalmente
+git stash pop               # Recuperar último stash
+git stash list              # Ver todos los stash
+git stash drop              # Eliminar último stash
+
+── REMOTOS ────────────────────────────────
+git remote -v               # Ver remotos
+git remote add origin <url> # Agregar remoto
+git fetch origin            # Bajar sin mergear
+git push -u origin main     # Push con tracking
+
+── TIPS PRO ───────────────────────────────
+git commit --amend          # Editar último commit
+git cherry-pick <commit>    # Aplicar commit específico
+git bisect start            # Búsqueda binaria de bugs
+git reflog                  # Historial de todo (salvavidas)
+
+=========================================
+  Compartido por Jorge Morelo
+  morelodev-portfolio.vercel.app
+=========================================
