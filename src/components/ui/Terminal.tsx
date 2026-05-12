@@ -34,7 +34,7 @@ const LINE_PAUSE = 320
 export default function Terminal() {
   const [rendered, setRendered] = useState<{ line: Line; typed: string; done: boolean }[]>([])
   const [cursorVisible, setCursorVisible] = useState(true)
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const blink = setInterval(() => setCursorVisible((v) => !v), 530)
@@ -93,7 +93,9 @@ export default function Terminal() {
   }, [])
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
   }, [rendered])
 
   const isFinished = rendered.length === SCRIPT.length && rendered[rendered.length - 1]?.done
@@ -109,7 +111,10 @@ export default function Terminal() {
       </div>
 
       {/* Content */}
-      <div className="h-64 overflow-y-auto px-4 py-4 font-mono text-sm leading-relaxed">
+      <div
+        ref={scrollRef}
+        className="h-64 overflow-y-auto px-4 py-4 font-mono text-sm leading-relaxed"
+      >
         {rendered.map((entry, i) => {
           if (entry.line.type === 'blank') return <div key={i} className="h-2" />
 
@@ -142,8 +147,6 @@ export default function Terminal() {
             />
           </div>
         )}
-
-        <div ref={bottomRef} />
       </div>
     </div>
   )
