@@ -8,6 +8,7 @@ import { hasLocale } from 'next-intl'
 import { locales } from '@/lib/i18n'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import JsonLd from '@/components/JsonLd'
 import '../globals.css'
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+        <JsonLd />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
