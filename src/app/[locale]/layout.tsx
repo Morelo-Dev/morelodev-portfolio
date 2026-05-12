@@ -6,6 +6,8 @@ import { ThemeProvider } from 'next-themes'
 import { notFound } from 'next/navigation'
 import { hasLocale } from 'next-intl'
 import { locales } from '@/lib/i18n'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import '../globals.css'
 
 const inter = Inter({
@@ -79,7 +81,9 @@ export default async function LocaleLayout({ children, params }: Props) {
             >
               {locale === 'es' ? 'Ir al contenido principal' : 'Skip to main content'}
             </a>
+            <Header />
             {children}
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
