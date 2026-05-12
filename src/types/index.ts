@@ -16,6 +16,9 @@ export interface Skill {
   icon: string
 }
 
+export type PostBadge = 'NUEVO' | 'PRÓXIMAMENTE' | 'DESTACADO' | 'FREE' | 'PREMIUM'
+export type PostType = 'article' | 'video' | 'resource' | 'offer'
+
 export interface BlogPost {
   slug: string
   title: string
@@ -24,4 +27,14 @@ export interface BlogPost {
   readingTime: number
   tags: string[]
   published: boolean
+  comingSoon?: boolean
+  badge?: PostBadge
+  type?: PostType
+  featured?: boolean
+  coverImage?: string
+  videoUrl?: string
+  downloadUrl?: string
+  downloadLabel?: string
+  price?: number | null
+  priceLabel?: string
 }

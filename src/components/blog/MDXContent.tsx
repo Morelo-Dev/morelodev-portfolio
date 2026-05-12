@@ -1,26 +1,20 @@
-'use client'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
+import rehypeHighlight from 'rehype-highlight'
+import { mdxComponents } from './mdx-components'
 
-interface Props {
-  source: string
-}
-
-export default function MDXContent({ source }: Props) {
-  const lines = source.split('\n')
-
+export default function MDXContent({ source }: { source: string }) {
   return (
-    <div>
-      {lines.map((line, i) => {
-        if (line.startsWith('## ')) return <h2 key={i}>{line.slice(3)}</h2>
-        if (line.startsWith('# ')) return <h1 key={i}>{line.slice(2)}</h1>
-        if (line.startsWith('> '))
-          return (
-            <blockquote key={i}>
-              <p>{line.slice(2)}</p>
-            </blockquote>
-          )
-        if (line.trim() === '') return <br key={i} />
-        return <p key={i}>{line}</p>
-      })}
-    </div>
+    <MDXRemote
+      source={source}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypeSlug, rehypeHighlight],
+        },
+      }}
+      components={mdxComponents}
+    />
   )
 }

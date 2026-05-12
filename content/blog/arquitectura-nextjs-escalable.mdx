@@ -4,18 +4,44 @@ excerpt: "Cómo estructurar un proyecto Next.js 14 con App Router para que escal
 date: "2025-04-15"
 tags: ["Next.js", "Arquitectura", "React"]
 published: true
+type: "article"
+badge: "DESTACADO"
 ---
 
 Cuando un proyecto Next.js crece, la estructura de carpetas puede convertirse en el mayor obstáculo para la productividad del equipo. En este artículo comparto las decisiones que tomé al construir este portafolio.
 
 ## El problema con las estructuras planas
 
-El error más común es mezclar responsabilidades en las mismas carpetas...
+El error más común es mezclar responsabilidades en las mismas carpetas. Una estructura plana funciona para proyectos pequeños pero no escala.
+
+```
+src/
+├── app/
+│   └── [locale]/
+│       ├── page.tsx       ← Server Component
+│       └── layout.tsx
+├── components/
+│   ├── layout/            ← Header, Footer
+│   ├── sections/          ← Secciones de página
+│   └── ui/               ← Componentes reutilizables
+└── lib/                  ← Lógica de negocio
+```
 
 ## Colocation: la clave
 
-La regla de oro del App Router es **colocar el código cerca de donde se usa**...
+La regla de oro del App Router es **colocar el código cerca de donde se usa**. Si un componente solo lo usa una ruta, vive dentro de esa ruta.
 
 ## Server vs Client Components
 
-La decisión más importante en Next.js 14 es cuándo usar `'use client'`...
+La decisión más importante en Next.js es cuándo usar `'use client'`. La regla:
+
+- **Server Component** por defecto — fetch de datos, acceso a filesystem, SEO
+- **Client Component** solo cuando necesitas: estado, efectos, eventos del navegador
+
+<InfoBox type="info">
+  Un Server Component no puede importar un Client Component que use hooks de React. Pero sí puede pasarle datos como props.
+</InfoBox>
+
+## Conclusión
+
+La arquitectura no es un problema de Next.js, es un problema de disciplina. App Router te da las herramientas, tú decides cómo usarlas.

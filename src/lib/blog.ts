@@ -6,29 +6,41 @@ import type { BlogPost } from '@/types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content/blog')
 
+function parsePost(file: string): BlogPost {
+  const slug = file.replace(/\.mdx$/, '')
+  const raw = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf-8')
+  const { data, content } = matter(raw)
+  const rt = readingTime(content)
+
+  return {
+    slug,
+    title: data.title as string,
+    excerpt: data.excerpt as string,
+    date: data.date as string,
+    readingTime: Math.ceil(rt.minutes),
+    tags: (data.tags as string[]) ?? [],
+    published: (data.published as boolean) ?? true,
+    comingSoon: (data.comingSoon as boolean) ?? false,
+    badge: data.badge ?? undefined,
+    type: data.type ?? 'article',
+    featured: (data.featured as boolean) ?? false,
+    coverImage: data.coverImage ?? undefined,
+    videoUrl: data.videoUrl ?? undefined,
+    downloadUrl: data.downloadUrl ?? undefined,
+    downloadLabel: data.downloadLabel ?? undefined,
+    price: data.price ?? null,
+    priceLabel: data.priceLabel ?? undefined,
+  }
+}
+
 export function getAllPosts(): BlogPost[] {
   if (!fs.existsSync(CONTENT_DIR)) return []
 
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.mdx'))
 
   return files
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, '')
-      const raw = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf-8')
-      const { data, content } = matter(raw)
-      const rt = readingTime(content)
-
-      return {
-        slug,
-        title: data.title as string,
-        excerpt: data.excerpt as string,
-        date: data.date as string,
-        readingTime: Math.ceil(rt.minutes),
-        tags: (data.tags as string[]) ?? [],
-        published: (data.published as boolean) ?? true,
-      } satisfies BlogPost
-    })
-    .filter((p) => p.published)
+    .map(parsePost)
+    .filter((p) => p.published || p.comingSoon)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
