@@ -2,31 +2,32 @@
 
 import { useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
-import { Music, Coffee, Code2, MapPin } from 'lucide-react'
+import { Music, Code2, MapPin, Gamepad2, Car, Plane, Dumbbell } from 'lucide-react'
 
 const INTERESTS = [
   { icon: Code2, labelEs: 'Open source', labelEn: 'Open source' },
-  {
-    icon: Music,
-    labelEs: 'Música — Tu canción favorita aquí',
-    labelEn: 'Music — Your fav song here',
-  },
-  { icon: Coffee, labelEs: 'Café obligatorio', labelEn: 'Coffee mandatory' },
+  { icon: Gamepad2, labelEs: 'FPS & Strategy', labelEn: 'FPS & Strategy' },
+  { icon: Dumbbell, labelEs: 'Baloncesto', labelEn: 'Basketball' },
+  { icon: Car, labelEs: 'Conducir', labelEn: 'Driving' },
+  { icon: Plane, labelEs: 'Viajes & deportes extremos', labelEn: 'Travel & extreme sports' },
+  { icon: Music, labelEs: 'Vallenato', labelEn: 'Vallenato' },
   { icon: MapPin, labelEs: 'Colombia 🇨🇴', labelEn: 'Colombia 🇨🇴' },
 ]
 
 const FUN_FACTS = {
   es: [
-    'Escribo mejor código después de las 10pm',
+    'El diálogo es la base de toda buena relación — personal, laboral o técnica',
     'Prefiero dark mode en todo, incluyendo mi cuarto',
-    'Mi primer "Hello World" fue en Python',
-    'Creo que el CSS no es tan difícil (y lo defiendo)',
+    'Juego shooters y estrategia: mismo músculo que debuggear bajo presión',
+    'Mi código funciona mejor con vallenato de fondo',
+    'Creo que el CSS no es tan difícil (y lo defiendo con argumentos)',
   ],
   en: [
-    'I write better code after 10pm',
+    'Dialogue is the foundation of every good relationship — personal, work, or technical',
     'I prefer dark mode everywhere, including my room',
-    'My first "Hello World" was in Python',
-    'I think CSS is not that hard (and I will die on that hill)',
+    'I play shooters and strategy games: same muscle as debugging under pressure',
+    'My code works better with vallenato in the background',
+    'I think CSS is not that hard (and I will argue about it)',
   ],
 }
 
@@ -53,13 +54,13 @@ export default function About() {
       </motion.div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        {/* Bio */}
+        {/* Bio + intereses */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="space-y-4"
+          className="space-y-5"
         >
           <p className="leading-relaxed text-zinc-600 dark:text-zinc-400">
             {locale === 'es'
@@ -68,12 +69,12 @@ export default function About() {
           </p>
           <p className="leading-relaxed text-zinc-600 dark:text-zinc-400">
             {locale === 'es'
-              ? 'Cuando no estoy frente al editor, probablemente estoy escuchando música, tomando café o explorando algún proyecto nuevo que me parece interesante.'
-              : "When I'm not in front of the editor, I'm probably listening to music, drinking coffee, or exploring some new project that caught my eye."}
+              ? 'Fuera del editor me encontrarás en una cancha de baloncesto, planeando el próximo viaje, detrás del volante o en medio de una buena conversación. Creo que el diálogo es la base de todo — de las relaciones, los equipos y los buenos productos.'
+              : "Outside the editor you'll find me on a basketball court, planning the next trip, behind the wheel, or in the middle of a good conversation. I believe dialogue is the foundation of everything — relationships, teams, and great products."}
           </p>
 
-          {/* Interests */}
-          <div className="flex flex-wrap gap-2 pt-2">
+          {/* Chips */}
+          <div className="flex flex-wrap gap-2 pt-1">
             {INTERESTS.map(({ icon: Icon, labelEs, labelEn }) => (
               <span
                 key={labelEs}
@@ -83,6 +84,23 @@ export default function About() {
                 {locale === 'es' ? labelEs : labelEn}
               </span>
             ))}
+          </div>
+
+          {/* Spotify embed */}
+          <div className="pt-2">
+            <p className="mb-2 font-mono text-xs text-zinc-400">
+              {locale === 'es' ? '// canción favorita' : '// favorite song'}
+            </p>
+            <iframe
+              src="https://open.spotify.com/embed/track/20nzlXuoe47vMKRSjSRZXc?utm_source=generator&theme=0"
+              width="100%"
+              height="80"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="rounded-xl"
+              title="En Señal de Victoria — Iván Villazón"
+            />
           </div>
         </motion.div>
 
@@ -94,9 +112,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="mb-4 font-mono text-xs text-zinc-400">
-              {locale === 'es' ? '// fun_facts.json' : '// fun_facts.json'}
-            </p>
+            <p className="mb-4 font-mono text-xs text-zinc-400">{'// fun_facts.json'}</p>
             <ul className="space-y-3">
               {facts.map((fact, i) => (
                 <motion.li
