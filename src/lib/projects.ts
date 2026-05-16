@@ -16,7 +16,7 @@ export const projects: Project[] = [
       'React Hook Form',
     ],
     liveUrl: 'https://jmfenix.vercel.app',
-    image: '/projects/jmfenix.png',
+
     featured: true,
     accent: '#2563eb',
     details: {
@@ -55,7 +55,7 @@ export const projects: Project[] = [
       'Plataforma de comercio electrónico full-stack con carrito de compras, pagos con Stripe, panel de administración y gestión de inventario en tiempo real.',
     tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
     githubUrl: 'https://github.com/Morelo-Dev',
-    image: '/projects/ecommerce.png',
+
     featured: true,
     accent: '#7c3aed',
     details: {
@@ -94,7 +94,7 @@ export const projects: Project[] = [
       'Aplicación de gestión de tareas con drag & drop, colaboración en tiempo real vía WebSockets, notificaciones push y sincronización offline.',
     tags: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'PWA'],
     githubUrl: 'https://github.com/Morelo-Dev',
-    image: '/projects/tasks.png',
+
     featured: true,
     accent: '#059669',
     details: {
@@ -133,7 +133,7 @@ export const projects: Project[] = [
       'Dashboard de analíticas con visualizaciones interactivas, filtros dinámicos, exportación a CSV/PDF y soporte para múltiples fuentes de datos.',
     tags: ['React', 'D3.js', 'Python', 'FastAPI', 'Redis'],
     githubUrl: 'https://github.com/Morelo-Dev',
-    image: '/projects/dashboard.png',
+
     featured: false,
     accent: '#d97706',
     details: {
@@ -172,7 +172,7 @@ export const projects: Project[] = [
       'Framework REST API con autenticación JWT, rate limiting, documentación automática con OpenAPI/Swagger y cobertura de tests al 95%.',
     tags: ['Node.js', 'Express', 'PostgreSQL', 'Docker', 'Jest'],
     githubUrl: 'https://github.com/Morelo-Dev',
-    image: '/projects/api.png',
+
     featured: false,
     accent: '#64748b',
     details: {
