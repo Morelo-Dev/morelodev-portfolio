@@ -62,7 +62,7 @@ export default function Header() {
           href={`/${locale}`}
           className="font-mono text-sm font-semibold tracking-tight text-zinc-900 transition-colors hover:text-blue-600 dark:text-zinc-100 dark:hover:text-blue-400"
         >
-          jorge<span className="text-blue-600 dark:text-blue-400">.dev</span>
+          Morelo<span className="text-blue-600 dark:text-blue-400">.Dev</span>
         </Link>
 
         {/* Desktop nav */}
