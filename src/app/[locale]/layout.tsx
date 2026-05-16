@@ -11,6 +11,8 @@ import Footer from '@/components/layout/Footer'
 import JsonLd from '@/components/JsonLd'
 import '../globals.css'
 
+const BASE = 'https://morelodev-portfolio.vercel.app'
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -23,29 +25,68 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Jorge Morelo — Desarrollador de Software',
-    template: '%s | Jorge Morelo',
-  },
-  description:
-    'Portafolio de Jorge Andrés Morelo Hinestroza, desarrollador de software mid-level especializado en aplicaciones web modernas.',
-  authors: [{ name: 'Jorge Andrés Morelo Hinestroza' }],
-  creator: 'Jorge Andrés Morelo Hinestroza',
-  openGraph: {
-    type: 'website',
-    locale: 'es_CO',
-    alternateLocale: 'en_US',
-    siteName: 'Jorge Morelo',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@morelodev',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const isEs = locale === 'es'
+
+  const title = isEs
+    ? 'Jorge Morelo — Desarrollador de Software'
+    : 'Jorge Morelo — Software Developer'
+  const description = isEs
+    ? 'Portafolio de Jorge Andrés Morelo Hinestroza, desarrollador de software especializado en aplicaciones web modernas con React, Next.js y TypeScript.'
+    : 'Portfolio of Jorge Andrés Morelo Hinestroza, software developer specialized in modern web applications with React, Next.js and TypeScript.'
+
+  return {
+    title: {
+      default: title,
+      template: `%s | Jorge Morelo`,
+    },
+    description,
+    authors: [{ name: 'Jorge Andrés Morelo Hinestroza' }],
+    creator: 'Jorge Andrés Morelo Hinestroza',
+    metadataBase: new URL(BASE),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        es: '/es',
+        en: '/en',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      url: `${BASE}/${locale}`,
+      locale: isEs ? 'es_CO' : 'en_US',
+      alternateLocale: isEs ? 'en_US' : 'es_CO',
+      siteName: 'Jorge Morelo',
+      title,
+      description,
+      images: [
+        {
+          url: `${BASE}/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: isEs
+            ? 'Jorge Morelo — Desarrollador de Software'
+            : 'Jorge Morelo — Software Developer',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      creator: '@morelodev',
+      title,
+      description,
+      images: [`${BASE}/${locale}/opengraph-image`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  }
 }
 
 type Props = {
