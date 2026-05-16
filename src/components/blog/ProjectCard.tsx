@@ -254,7 +254,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <div className="relative h-40 shrink-0 overflow-hidden">
           {hasRealImage ? (
             <Image
-              src={project.image}
+              src={project.image!}
               alt={project.title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
