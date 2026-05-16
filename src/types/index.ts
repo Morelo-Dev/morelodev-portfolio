@@ -5,7 +5,7 @@ export interface Project {
   tags: string[]
   liveUrl?: string
   githubUrl?: string
-  image: string
+  image?: string
   featured: boolean
   accent?: string
   details?: {
