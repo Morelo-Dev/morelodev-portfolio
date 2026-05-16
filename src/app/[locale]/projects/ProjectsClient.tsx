@@ -78,7 +78,7 @@ export default function ProjectsClient() {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} index={i} />
             </motion.div>
           ))}
         </motion.div>

@@ -7,6 +7,7 @@ export interface Project {
   githubUrl?: string
   image: string
   featured: boolean
+  accent?: string
 }
 
 export interface Skill {

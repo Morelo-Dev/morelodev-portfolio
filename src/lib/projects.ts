@@ -18,6 +18,7 @@ export const projects: Project[] = [
     liveUrl: 'https://jmfenix.vercel.app',
     image: '/projects/jmfenix.png',
     featured: true,
+    accent: '#2563eb',
   },
   {
     id: 'ecommerce-platform',
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/Morelo-Dev',
     image: '/projects/ecommerce.png',
     featured: true,
+    accent: '#7c3aed',
   },
   {
     id: 'task-manager',
@@ -40,6 +42,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/Morelo-Dev',
     image: '/projects/tasks.png',
     featured: true,
+    accent: '#059669',
   },
   {
     id: 'analytics-dashboard',
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/Morelo-Dev',
     image: '/projects/dashboard.png',
     featured: false,
+    accent: '#d97706',
   },
   {
     id: 'api-rest',
@@ -60,6 +64,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/Morelo-Dev',
     image: '/projects/api.png',
     featured: false,
+    accent: '#64748b',
   },
 ]
 
