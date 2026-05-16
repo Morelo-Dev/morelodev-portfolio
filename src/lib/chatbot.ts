@@ -440,8 +440,8 @@ const knowledge: KnowledgeEntry[] = [
       'position',
     ],
     answer: {
-      es: '¡Sí! Jorge está disponible para proyectos freelance y oportunidades laborales 🟢\n\nPrefiere trabajo remoto. Puedes contactarlo directamente:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev\n\nO usa el formulario de contacto en este portafolio.',
-      en: 'Yes! Jorge is available for freelance projects and job opportunities 🟢\n\nHe prefers remote work. You can contact him directly:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev\n\nOr use the contact form on this portfolio.',
+      es: '¡Sí! Jorge está disponible para proyectos freelance y oportunidades laborales 🟢\n\nPrefiere trabajo remoto. Puedes contactarlo directamente:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev\n\nO usa el formulario de contacto en este portafolio.',
+      en: 'Yes! Jorge is available for freelance projects and job opportunities 🟢\n\nHe prefers remote work. You can contact him directly:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev\n\nOr use the contact form on this portfolio.',
     },
   },
 
@@ -471,8 +471,8 @@ const knowledge: KnowledgeEntry[] = [
       'telegram',
     ],
     answer: {
-      es: 'Puedes contactar a Jorge por:\n\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev\n• GitHub: github.com/Morelo-Dev\n\nO usa el formulario de contacto de este portafolio 👇',
-      en: 'You can reach Jorge at:\n\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev\n• GitHub: github.com/Morelo-Dev\n\nOr use the contact form on this portfolio 👇',
+      es: 'Puedes contactar a Jorge por:\n\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev\n• GitHub: github.com/Morelo-Dev\n\nO usa el formulario de contacto de este portafolio 👇',
+      en: 'You can reach Jorge at:\n\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev\n• GitHub: github.com/Morelo-Dev\n\nOr use the contact form on this portfolio 👇',
     },
   },
 
@@ -588,8 +588,8 @@ const knowledge: KnowledgeEntry[] = [
       'value',
     ],
     answer: {
-      es: 'Las tarifas varían según el alcance y tipo de proyecto. Te recomiendo contactar a Jorge directamente para discutirlo:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev',
-      en: 'Rates vary depending on the project scope and type. I recommend contacting Jorge directly to discuss it:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev',
+      es: 'Las tarifas varían según el alcance y tipo de proyecto. Te recomiendo contactar a Jorge directamente para discutirlo:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev',
+      en: 'Rates vary depending on the project scope and type. I recommend contacting Jorge directly to discuss it:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev',
     },
   },
 
@@ -681,8 +681,8 @@ const knowledge: KnowledgeEntry[] = [
       'when',
     ],
     answer: {
-      es: 'Jorge está disponible actualmente. Para coordinar fechas de inicio y detalles, lo mejor es contactarlo directamente:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev',
-      en: "Jorge is currently available. To coordinate start dates and details, it's best to contact him directly:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev",
+      es: 'Jorge está disponible actualmente. Para coordinar fechas de inicio y detalles, lo mejor es contactarlo directamente:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev',
+      en: "Jorge is currently available. To coordinate start dates and details, it's best to contact him directly:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev",
     },
   },
 
@@ -777,15 +777,15 @@ const knowledge: KnowledgeEntry[] = [
       'horrible',
     ],
     answer: {
-      es: 'Tienes razón, soy un asistente básico con conocimiento limitado sobre Jorge 😅. Para cualquier duda específica, la mejor opción es contactarlo directamente: jorge.morelo@siempre.net.co',
-      en: "You're right, I'm a basic assistant with limited knowledge about Jorge 😅. For any specific questions, the best option is to contact him directly: jorge.morelo@siempre.net.co",
+      es: 'Tienes razón, soy un asistente básico con conocimiento limitado sobre Jorge 😅. Para cualquier duda específica, la mejor opción es contactarlo directamente: morelo.dev2025@gmail.com',
+      en: "You're right, I'm a basic assistant with limited knowledge about Jorge 😅. For any specific questions, the best option is to contact him directly: morelo.dev2025@gmail.com",
     },
   },
 ]
 
 const FALLBACK: Record<Locale, string> = {
-  es: '¡Buena pregunta! No tengo esa información específica. Te sugiero contactar a Jorge directamente:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev',
-  en: "Good question! I don't have that specific information. I suggest contacting Jorge directly:\n• Email: jorge.morelo@siempre.net.co\n• LinkedIn: linkedin.com/in/morelodev",
+  es: '¡Buena pregunta! No tengo esa información específica. Te sugiero contactar a Jorge directamente:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev',
+  en: "Good question! I don't have that specific information. I suggest contacting Jorge directly:\n• Email: morelo.dev2025@gmail.com\n• LinkedIn: linkedin.com/in/morelodev",
 }
 
 export function getChatResponse(input: string, locale: Locale): string {
