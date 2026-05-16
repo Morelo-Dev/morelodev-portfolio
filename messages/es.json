@@ -24,7 +24,16 @@
     "subtitle": "Selección de trabajos recientes",
     "live": "Demo en vivo",
     "code": "Código fuente",
-    "view_all": "Ver todos"
+    "view_all": "Ver todos",
+    "view_details": "Ver detalles",
+    "back": "← Volver a proyectos",
+    "features": "Características",
+    "about": "Sobre el proyecto",
+    "status_in_progress": "En desarrollo",
+    "status_completed": "Completado",
+    "repo": "Ver repositorio",
+    "year": "Año",
+    "no_repo": "Repositorio privado"
   },
   "skills": {
     "title": "Habilidades",
@@ -58,5 +67,13 @@
     "skip_to_content": "Ir al contenido principal",
     "open_menu": "Abrir menú",
     "close_menu": "Cerrar menú"
+  },
+  "chat": {
+    "title": "Pregúntame algo",
+    "placeholder": "¿Qué tecnologías usas? ¿Estás disponible?...",
+    "send": "Enviar",
+    "thinking": "Pensando...",
+    "greeting": "Hola 👋 Soy el asistente de Jorge. Puedes preguntarme sobre sus proyectos, habilidades o disponibilidad.",
+    "error": "Hubo un error. Intenta de nuevo."
   }
 }

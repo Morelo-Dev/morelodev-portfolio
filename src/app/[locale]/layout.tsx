@@ -9,6 +9,7 @@ import { locales } from '@/lib/i18n'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import JsonLd from '@/components/JsonLd'
+import FloatingChat from '@/components/FloatingChat'
 import '../globals.css'
 
 const BASE = 'https://morelodev-portfolio.vercel.app'
@@ -127,6 +128,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Header />
             {children}
             <Footer />
+            <FloatingChat locale={locale} />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

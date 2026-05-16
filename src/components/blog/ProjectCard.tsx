@@ -1,12 +1,16 @@
 'use client'
 
+'use client'
+
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { ExternalLink, Code2 } from 'lucide-react'
+import Link from 'next/link'
+import { ExternalLink, Code2, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/types'
+import { useLocale } from 'next-intl'
 
 interface ProjectCardProps {
   project: Project
@@ -192,6 +196,7 @@ function GenericMockup({ accent }: { accent: string }) {
 
 export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const t = useTranslations('projects')
+  const locale = useLocale()
   const accent = project.accent ?? '#2563eb'
   const cardRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
@@ -321,6 +326,14 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 {t('code')}
               </a>
             )}
+            <Link
+              href={`/${locale}/projects/${project.id}`}
+              aria-label={`Ver detalles de ${project.title}`}
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 transition-colors hover:text-zinc-100"
+            >
+              {t('view_details')}
+              <ArrowRight size={11} aria-hidden="true" />
+            </Link>
             {project.liveUrl && (
               <a
                 href={project.liveUrl}

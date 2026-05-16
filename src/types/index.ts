@@ -8,6 +8,18 @@ export interface Project {
   image: string
   featured: boolean
   accent?: string
+  details?: {
+    fullDescription: string
+    features: string[]
+    year: number
+    status: 'in-progress' | 'completed'
+    translations?: {
+      en: {
+        fullDescription: string
+        features: string[]
+      }
+    }
+  }
 }
 
 export interface Skill {

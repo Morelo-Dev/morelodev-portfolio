@@ -24,7 +24,16 @@
     "subtitle": "A selection of recent work",
     "live": "Live demo",
     "code": "Source code",
-    "view_all": "View all"
+    "view_all": "View all",
+    "view_details": "View details",
+    "back": "← Back to projects",
+    "features": "Features",
+    "about": "About the project",
+    "status_in_progress": "In progress",
+    "status_completed": "Completed",
+    "repo": "View repository",
+    "year": "Year",
+    "no_repo": "Private repository"
   },
   "skills": {
     "title": "Skills",
@@ -58,5 +67,13 @@
     "skip_to_content": "Skip to main content",
     "open_menu": "Open menu",
     "close_menu": "Close menu"
+  },
+  "chat": {
+    "title": "Ask me anything",
+    "placeholder": "What technologies do you use? Are you available?...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "greeting": "Hi 👋 I'm Jorge's assistant. You can ask me about his projects, skills, or availability.",
+    "error": "Something went wrong. Please try again."
   }
 }
