@@ -2,6 +2,24 @@ import type { Project } from '@/types'
 
 export const projects: Project[] = [
   {
+    id: 'jmfenix',
+    title: 'JM Fénix — SaaS Contable',
+    description:
+      'Plataforma SaaS para contadores: gestión de clientes y empresas, obligaciones tributarias, calendarios DIAN, control de roles, auditoría y notificaciones automáticas. Diseño modular feature-based con glassmorphism y design system propio.',
+    tags: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS',
+      'Zustand',
+      'shadcn/ui',
+      'React Hook Form',
+    ],
+    liveUrl: 'https://jmfenix.vercel.app',
+    image: '/projects/jmfenix.png',
+    featured: true,
+  },
+  {
     id: 'ecommerce-platform',
     title: 'E-Commerce Platform',
     description:
@@ -31,7 +49,7 @@ export const projects: Project[] = [
     tags: ['React', 'D3.js', 'Python', 'FastAPI', 'Redis'],
     githubUrl: 'https://github.com/Morelo-Dev',
     image: '/projects/dashboard.png',
-    featured: true,
+    featured: false,
   },
   {
     id: 'api-rest',
