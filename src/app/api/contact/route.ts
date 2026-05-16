@@ -59,12 +59,107 @@ export async function POST(req: NextRequest) {
 
   const resend = new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
 
+  const date = new Date().toLocaleString('es-CO', {
+    timeZone: 'America/Bogota',
+    dateStyle: 'full',
+    timeStyle: 'short',
+  })
+
+  const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuevo mensaje — Portafolio</title>
+</head>
+<body style="margin:0;padding:0;background:#09090b;font-family:'Segoe UI',system-ui,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#09090b;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#1e1e2e 0%,#1a2540 100%);border-radius:16px 16px 0 0;padding:36px 40px 28px;border-bottom:1px solid #2563eb40;">
+              <p style="margin:0 0 6px;font-family:monospace;font-size:12px;color:#2563eb;letter-spacing:2px;text-transform:uppercase;">Morelo.Dev — Portafolio</p>
+              <h1 style="margin:0;font-size:22px;font-weight:700;color:#f4f4f5;line-height:1.3;">Nuevo mensaje de contacto</h1>
+              <p style="margin:8px 0 0;font-size:13px;color:#71717a;">${date}</p>
+            </td>
+          </tr>
+
+          <!-- Sender card -->
+          <tr>
+            <td style="background:#111113;padding:28px 40px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#18181b;border:1px solid #27272a;border-radius:12px;overflow:hidden;">
+                <tr>
+                  <td style="padding:20px 24px;">
+                    <p style="margin:0 0 4px;font-size:11px;color:#52525b;text-transform:uppercase;letter-spacing:1px;">De</p>
+                    <p style="margin:0;font-size:18px;font-weight:600;color:#f4f4f5;">${name}</p>
+                    <a href="mailto:${email}" style="display:inline-block;margin-top:4px;font-size:13px;color:#2563eb;text-decoration:none;">${email}</a>
+                  </td>
+                  <td align="right" style="padding:20px 24px;">
+                    <div style="width:44px;height:44px;border-radius:50%;background:#2563eb18;border:1px solid #2563eb40;display:flex;align-items:center;justify-content:center;">
+                      <span style="font-size:20px;line-height:44px;display:block;text-align:center;">✉️</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message -->
+          <tr>
+            <td style="background:#111113;padding:20px 40px 0;">
+              <p style="margin:0 0 10px;font-size:11px;color:#52525b;text-transform:uppercase;letter-spacing:1px;">Mensaje</p>
+              <div style="background:#18181b;border:1px solid #27272a;border-left:3px solid #2563eb;border-radius:0 12px 12px 0;padding:20px 24px;">
+                <p style="margin:0;font-size:15px;color:#d4d4d8;line-height:1.7;white-space:pre-wrap;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Reply CTA -->
+          <tr>
+            <td style="background:#111113;padding:24px 40px 0;">
+              <a href="mailto:${email}?subject=Re: Tu mensaje en Morelo.Dev" style="display:inline-block;background:#2563eb;color:#fff;font-size:14px;font-weight:600;text-decoration:none;padding:12px 28px;border-radius:8px;">
+                Responder a ${name}
+              </a>
+            </td>
+          </tr>
+
+          <!-- Meta -->
+          <tr>
+            <td style="background:#111113;padding:20px 40px 28px;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="border-top:1px solid #27272a;padding-top:16px;">
+                    <p style="margin:0;font-size:11px;color:#3f3f46;">IP: ${ip} &nbsp;·&nbsp; Enviado desde el formulario de contacto de morelodev-portfolio.vercel.app</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0c0c0e;border-radius:0 0 16px 16px;padding:20px 40px;border-top:1px solid #2563eb40;text-align:center;">
+              <p style="margin:0;font-family:monospace;font-size:12px;color:#3f3f46;">Morelo<span style="color:#2563eb;">.Dev</span> &nbsp;·&nbsp; Jorge Andrés Morelo</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`
+
   try {
     await resend.emails.send({
       from: 'Portafolio <onboarding@resend.dev>',
       to: process.env.CONTACT_EMAIL ?? 'morelo.dev2025@gmail.com',
-      subject: `Mensaje de ${name} — Portafolio`,
+      subject: `✉️ ${name} te escribió desde tu portafolio`,
       replyTo: email,
+      html,
       text: `Nombre: ${name}\nEmail: ${email}\nIP: ${ip}\n\n${message}`,
     })
 
