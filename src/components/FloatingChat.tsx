@@ -178,37 +178,54 @@ export default function FloatingChat({ locale }: FloatingChatProps) {
       </AnimatePresence>
 
       {/* Botón flotante */}
-      <motion.button
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-label={isOpen ? 'Cerrar chat' : t('title')}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.93 }}
-        className="flex h-14 w-14 items-center justify-center rounded-full border border-zinc-700/60 bg-zinc-900 text-blue-400 shadow-lg shadow-black/30 transition-colors hover:bg-zinc-800"
-      >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ opacity: 0, rotate: -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 90 }}
-              transition={{ duration: 0.15 }}
-            >
-              <X size={22} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="open"
-              initial={{ opacity: 0, rotate: 90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: -90 }}
-              transition={{ duration: 0.15 }}
-            >
-              <MessageCircle size={22} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.button>
+      <div className="relative">
+        {/* Anillos de pulsación — solo cuando el chat está cerrado */}
+        {!isOpen && (
+          <>
+            <motion.span
+              className="absolute inset-0 rounded-full bg-blue-500/30"
+              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
+            />
+            <motion.span
+              className="absolute inset-0 rounded-full bg-blue-500/20"
+              animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut', delay: 0.4 }}
+            />
+          </>
+        )}
+        <motion.button
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? 'Cerrar chat' : t('title')}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.93 }}
+          className="relative flex h-14 w-14 items-center justify-center rounded-full border border-zinc-700/60 bg-zinc-900 text-blue-400 shadow-lg shadow-black/30 transition-colors hover:bg-zinc-800"
+        >
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.15 }}
+              >
+                <X size={22} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="open"
+                initial={{ opacity: 0, rotate: 90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: -90 }}
+                transition={{ duration: 0.15 }}
+              >
+                <MessageCircle size={22} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
     </div>
   )
 }
