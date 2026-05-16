@@ -65,90 +65,238 @@ export async function POST(req: NextRequest) {
     timeStyle: 'short',
   })
 
+  const initials = name
+    .split(' ')
+    .slice(0, 2)
+    .map((w: string) => w[0]?.toUpperCase() ?? '')
+    .join('')
+
+  const safeMessage = message.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
   const html = `<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuevo mensaje — Portafolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Nuevo contacto — Morelo.Dev</title>
 </head>
-<body style="margin:0;padding:0;background:#09090b;font-family:'Segoe UI',system-ui,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#09090b;padding:40px 16px;">
-    <tr>
-      <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+<body style="margin:0;padding:0;background:#08080a;font-family:'Segoe UI',ui-sans-serif,system-ui,sans-serif;">
 
-          <!-- Header -->
-          <tr>
-            <td style="background:linear-gradient(135deg,#1e1e2e 0%,#1a2540 100%);border-radius:16px 16px 0 0;padding:36px 40px 28px;border-bottom:1px solid #2563eb40;">
-              <p style="margin:0 0 6px;font-family:monospace;font-size:12px;color:#2563eb;letter-spacing:2px;text-transform:uppercase;">Morelo.Dev — Portafolio</p>
-              <h1 style="margin:0;font-size:22px;font-weight:700;color:#f4f4f5;line-height:1.3;">Nuevo mensaje de contacto</h1>
-              <p style="margin:8px 0 0;font-size:13px;color:#71717a;">${date}</p>
-            </td>
-          </tr>
+  <!-- Outer wrapper -->
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+         style="background:#08080a;padding:48px 16px 64px;">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+             style="max-width:580px;">
 
-          <!-- Sender card -->
-          <tr>
-            <td style="background:#111113;padding:28px 40px 0;">
-              <table width="100%" cellpadding="0" cellspacing="0" style="background:#18181b;border:1px solid #27272a;border-radius:12px;overflow:hidden;">
-                <tr>
-                  <td style="padding:20px 24px;">
-                    <p style="margin:0 0 4px;font-size:11px;color:#52525b;text-transform:uppercase;letter-spacing:1px;">De</p>
-                    <p style="margin:0;font-size:18px;font-weight:600;color:#f4f4f5;">${name}</p>
-                    <a href="mailto:${email}" style="display:inline-block;margin-top:4px;font-size:13px;color:#2563eb;text-decoration:none;">${email}</a>
-                  </td>
-                  <td align="right" style="padding:20px 24px;">
-                    <div style="width:44px;height:44px;border-radius:50%;background:#2563eb18;border:1px solid #2563eb40;display:flex;align-items:center;justify-content:center;">
-                      <span style="font-size:20px;line-height:44px;display:block;text-align:center;">✉️</span>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+        <!-- ══ TOP ACCENT BAR ══ -->
+        <tr>
+          <td style="height:3px;background:linear-gradient(90deg,#1d4ed8 0%,#3b82f6 50%,#1d4ed8 100%);border-radius:3px 3px 0 0;"></td>
+        </tr>
 
-          <!-- Message -->
-          <tr>
-            <td style="background:#111113;padding:20px 40px 0;">
-              <p style="margin:0 0 10px;font-size:11px;color:#52525b;text-transform:uppercase;letter-spacing:1px;">Mensaje</p>
-              <div style="background:#18181b;border:1px solid #27272a;border-left:3px solid #2563eb;border-radius:0 12px 12px 0;padding:20px 24px;">
-                <p style="margin:0;font-size:15px;color:#d4d4d8;line-height:1.7;white-space:pre-wrap;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
-              </div>
-            </td>
-          </tr>
+        <!-- ══ HERO HEADER ══ -->
+        <tr>
+          <td style="background:linear-gradient(160deg,#0f1729 0%,#0d1117 60%,#0a0f1e 100%);
+                     padding:44px 48px 36px;position:relative;overflow:hidden;">
 
-          <!-- Reply CTA -->
-          <tr>
-            <td style="background:#111113;padding:24px 40px 0;">
-              <a href="mailto:${email}?subject=Re: Tu mensaje en Morelo.Dev" style="display:inline-block;background:#2563eb;color:#fff;font-size:14px;font-weight:600;text-decoration:none;padding:12px 28px;border-radius:8px;">
-                Responder a ${name}
-              </a>
-            </td>
-          </tr>
+            <!-- Faint grid texture via repeating-linear-gradient (solo soportado en algunos clientes) -->
+            <div style="position:absolute;inset:0;opacity:.04;
+                        background-image:linear-gradient(to right,#3b82f6 1px,transparent 1px),
+                                         linear-gradient(to bottom,#3b82f6 1px,transparent 1px);
+                        background-size:28px 28px;pointer-events:none;"></div>
 
-          <!-- Meta -->
-          <tr>
-            <td style="background:#111113;padding:20px 40px 28px;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="border-top:1px solid #27272a;padding-top:16px;">
-                    <p style="margin:0;font-size:11px;color:#3f3f46;">IP: ${ip} &nbsp;·&nbsp; Enviado desde el formulario de contacto de morelodev-portfolio.vercel.app</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+            <!-- Badge -->
+            <table cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom:20px;">
+              <tr>
+                <td style="background:#1e3a5f;border:1px solid #2563eb55;border-radius:100px;
+                           padding:5px 14px;">
+                  <span style="font-family:ui-monospace,'Cascadia Code',monospace;font-size:10px;
+                               font-weight:600;color:#60a5fa;letter-spacing:2.5px;
+                               text-transform:uppercase;">Morelo.Dev · Portafolio</span>
+                </td>
+              </tr>
+            </table>
 
-          <!-- Footer -->
-          <tr>
-            <td style="background:#0c0c0e;border-radius:0 0 16px 16px;padding:20px 40px;border-top:1px solid #2563eb40;text-align:center;">
-              <p style="margin:0;font-family:monospace;font-size:12px;color:#3f3f46;">Morelo<span style="color:#2563eb;">.Dev</span> &nbsp;·&nbsp; Jorge Andrés Morelo</p>
-            </td>
-          </tr>
+            <!-- Title -->
+            <h1 style="margin:0 0 8px;font-size:26px;font-weight:700;color:#f8fafc;
+                       line-height:1.25;letter-spacing:-0.3px;">
+              Tienes un nuevo mensaje
+            </h1>
+            <p style="margin:0;font-size:14px;color:#64748b;line-height:1.5;">
+              Alguien visitó tu portafolio y quiere conectar contigo.
+            </p>
 
-        </table>
-      </td>
-    </tr>
+            <!-- Divider -->
+            <div style="margin-top:28px;height:1px;
+                        background:linear-gradient(90deg,#1e40af33,#3b82f622,transparent);"></div>
+          </td>
+        </tr>
+
+        <!-- ══ SENDER SECTION ══ -->
+        <tr>
+          <td style="background:#0d0d0f;padding:32px 48px 0;">
+
+            <p style="margin:0 0 14px;font-size:10px;font-weight:600;color:#374151;
+                      letter-spacing:2px;text-transform:uppercase;">Remitente</p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+                   style="background:#111318;border:1px solid #1e2330;border-radius:14px;
+                          overflow:hidden;">
+              <tr>
+                <!-- Avatar con iniciales -->
+                <td width="72" style="padding:22px 0 22px 22px;vertical-align:middle;">
+                  <div style="width:48px;height:48px;border-radius:50%;
+                              background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+                              text-align:center;line-height:48px;">
+                    <span style="font-size:17px;font-weight:700;color:#fff;
+                                 font-family:ui-sans-serif,sans-serif;">${initials}</span>
+                  </div>
+                </td>
+
+                <!-- Info -->
+                <td style="padding:22px 22px 22px 14px;vertical-align:middle;">
+                  <p style="margin:0;font-size:17px;font-weight:600;color:#f1f5f9;
+                            letter-spacing:-0.2px;">${name}</p>
+                  <a href="mailto:${email}"
+                     style="display:inline-block;margin-top:4px;font-size:13px;
+                            color:#3b82f6;text-decoration:none;">${email}</a>
+                </td>
+
+                <!-- Right chip -->
+                <td align="right" style="padding:22px;vertical-align:middle;">
+                  <span style="display:inline-block;background:#172033;border:1px solid #1e3a5f;
+                               border-radius:8px;padding:6px 12px;font-size:11px;
+                               font-weight:500;color:#60a5fa;white-space:nowrap;">
+                    Nuevo contacto
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══ MESSAGE SECTION ══ -->
+        <tr>
+          <td style="background:#0d0d0f;padding:24px 48px 0;">
+
+            <p style="margin:0 0 14px;font-size:10px;font-weight:600;color:#374151;
+                      letter-spacing:2px;text-transform:uppercase;">Mensaje</p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+                   style="background:#111318;border:1px solid #1e2330;border-radius:14px;
+                          overflow:hidden;">
+              <!-- Accent top line -->
+              <tr>
+                <td style="height:2px;background:linear-gradient(90deg,#2563eb,#60a5fa55,transparent);"></td>
+              </tr>
+              <tr>
+                <td style="padding:24px 28px;">
+                  <!-- Quote mark -->
+                  <p style="margin:0 0 12px;font-size:32px;color:#1e3a5f;line-height:1;
+                            font-family:Georgia,serif;">&ldquo;</p>
+                  <p style="margin:0;font-size:15px;color:#cbd5e1;line-height:1.8;
+                            white-space:pre-wrap;font-style:italic;">${safeMessage}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══ META ROW ══ -->
+        <tr>
+          <td style="background:#0d0d0f;padding:20px 48px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+                   style="background:#0f1117;border:1px solid #1a1f2e;border-radius:10px;">
+              <tr>
+                <!-- Fecha -->
+                <td style="padding:14px 20px;border-right:1px solid #1a1f2e;" width="50%">
+                  <p style="margin:0 0 3px;font-size:10px;color:#374151;letter-spacing:1.5px;
+                            text-transform:uppercase;">Fecha</p>
+                  <p style="margin:0;font-size:12px;color:#64748b;">${date}</p>
+                </td>
+                <!-- IP -->
+                <td style="padding:14px 20px;" width="50%">
+                  <p style="margin:0 0 3px;font-size:10px;color:#374151;letter-spacing:1.5px;
+                            text-transform:uppercase;">IP de origen</p>
+                  <p style="margin:0;font-size:12px;color:#64748b;font-family:monospace;">${ip}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══ CTA ══ -->
+        <tr>
+          <td style="background:#0d0d0f;padding:28px 48px 0;">
+            <table cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td style="border-radius:10px;overflow:hidden;">
+                  <a href="mailto:${email}?subject=Re%3A%20Tu%20mensaje%20en%20Morelo.Dev"
+                     style="display:inline-block;background:linear-gradient(135deg,#1d4ed8,#2563eb);
+                            color:#fff;font-size:14px;font-weight:600;text-decoration:none;
+                            padding:14px 32px;border-radius:10px;letter-spacing:0.2px;">
+                    Responder a ${name} →
+                  </a>
+                </td>
+                <td style="padding-left:12px;">
+                  <a href="https://morelodev-portfolio.vercel.app"
+                     style="display:inline-block;background:#111318;border:1px solid #1e2330;
+                            color:#94a3b8;font-size:13px;text-decoration:none;
+                            padding:13px 24px;border-radius:10px;">
+                    Ver portafolio
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══ FOOTER ══ -->
+        <tr>
+          <td style="background:#0d0d0f;padding:36px 48px 0;">
+            <div style="height:1px;background:linear-gradient(90deg,transparent,#1e2330,transparent);
+                        margin-bottom:28px;"></div>
+
+            <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <!-- Branding -->
+                <td style="vertical-align:middle;">
+                  <p style="margin:0;font-family:ui-monospace,monospace;font-size:14px;
+                            font-weight:700;color:#1e293b;">
+                    Morelo<span style="color:#2563eb;">.Dev</span>
+                  </p>
+                  <p style="margin:4px 0 0;font-size:11px;color:#374151;">
+                    Jorge Andrés Morelo Hinestroza
+                  </p>
+                </td>
+
+                <!-- Social links -->
+                <td align="right" style="vertical-align:middle;">
+                  <a href="https://github.com/Morelo-Dev"
+                     style="display:inline-block;margin-left:10px;font-size:11px;
+                            color:#374151;text-decoration:none;">GitHub</a>
+                  <a href="https://linkedin.com/in/morelodev"
+                     style="display:inline-block;margin-left:10px;font-size:11px;
+                            color:#374151;text-decoration:none;">LinkedIn</a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:20px 0 0;font-size:10px;color:#1e2330;padding-bottom:32px;">
+              Este correo fue generado automáticamente desde el formulario de contacto de
+              morelodev-portfolio.vercel.app. No respondas directamente a este mensaje.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ══ BOTTOM ACCENT BAR ══ -->
+        <tr>
+          <td style="height:3px;background:linear-gradient(90deg,transparent,#1d4ed8,#3b82f6,#1d4ed8,transparent);
+                     border-radius:0 0 3px 3px;"></td>
+        </tr>
+
+      </table>
+    </td></tr>
   </table>
 </body>
 </html>`
