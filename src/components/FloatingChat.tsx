@@ -179,18 +179,13 @@ export default function FloatingChat({ locale }: FloatingChatProps) {
 
       {/* Botón flotante */}
       <div className="relative">
-        {/* Anillos de pulsación — solo cuando el chat está cerrado */}
+        {/* Anillos de pulsación — CSS puro para loop sin parpadeo */}
         {!isOpen && (
           <>
-            <motion.span
-              className="absolute inset-0 rounded-full bg-blue-500/30"
-              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
-            />
-            <motion.span
-              className="absolute inset-0 rounded-full bg-blue-500/20"
-              animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut', delay: 0.4 }}
+            <span className="absolute inset-0 animate-ping rounded-full bg-blue-500/25" />
+            <span
+              className="absolute inset-0 animate-ping rounded-full bg-blue-500/15"
+              style={{ animationDelay: '0.75s' }}
             />
           </>
         )}
