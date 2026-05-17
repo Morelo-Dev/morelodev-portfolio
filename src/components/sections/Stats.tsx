@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
 
 const STATS = [
-  { labelEs: 'Años de experiencia', labelEn: 'Years of experience', value: 3, suffix: '+' },
+  { labelEs: 'Años de trayectoria tech', labelEn: 'Years in tech', value: 3, suffix: '+' },
   { labelEs: 'Proyectos entregados', labelEn: 'Projects delivered', value: 12, suffix: '+' },
   { labelEs: 'Tecnologías dominadas', labelEn: 'Technologies mastered', value: 15, suffix: '+' },
   { labelEs: 'Disponibilidad', labelEn: 'Availability', value: 100, suffix: '%' },

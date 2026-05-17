@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog'
 
-const BASE = 'https://morelodev-portfolio.vercel.app'
+const BASE = 'https://morelodev.com'
 const LOCALES = ['es', 'en']
 const ROUTES = ['', '/experience', '/projects', '/skills', '/blog', '/contact']
 

@@ -12,7 +12,7 @@ import JsonLd from '@/components/JsonLd'
 import FloatingChat from '@/components/FloatingChat'
 import '../globals.css'
 
-const BASE = 'https://morelodev-portfolio.vercel.app'
+const BASE = 'https://morelodev.com'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -35,11 +35,36 @@ export async function generateMetadata({
   const isEs = locale === 'es'
 
   const title = isEs
-    ? 'Jorge Morelo — Desarrollador de Software'
-    : 'Jorge Morelo — Software Developer'
+    ? 'Jorge Morelo | Desarrollador Next.js & Frontend Engineer — Colombia'
+    : 'Jorge Morelo | Next.js Developer & Frontend Engineer — Colombia'
   const description = isEs
-    ? 'Portafolio de Jorge Andrés Morelo Hinestroza, desarrollador de software especializado en aplicaciones web modernas con React, Next.js y TypeScript.'
-    : 'Portfolio of Jorge Andrés Morelo Hinestroza, software developer specialized in modern web applications with React, Next.js and TypeScript.'
+    ? 'Ingeniero Frontend y Desarrollador Full-Stack en Colombia especializado en Next.js, React y TypeScript. Creador de plataformas SaaS contables y e-commerce con Stripe. Disponible para proyectos freelance y posiciones remotas.'
+    : 'Frontend Engineer and Full-Stack Developer in Colombia specialized in Next.js, React and TypeScript. Creator of SaaS platforms and e-commerce with Stripe integration. Available for freelance projects and remote positions.'
+  const keywords = isEs
+    ? [
+        'Desarrollador Next.js Colombia',
+        'Ingeniero Frontend Colombia',
+        'Desarrollador Full-Stack Colombia',
+        'Jorge Morelo desarrollador',
+        'Next.js React TypeScript',
+        'Desarrollo web Colombia',
+        'Freelance frontend Colombia',
+        'SaaS desarrollo Colombia',
+        'Integración Stripe Colombia',
+        'Portafolio desarrollador web',
+      ]
+    : [
+        'Next.js Developer Colombia',
+        'Frontend Engineer Colombia',
+        'Full-Stack Developer Colombia',
+        'Jorge Morelo developer',
+        'Next.js React TypeScript',
+        'Web development Colombia',
+        'Freelance frontend developer',
+        'SaaS development',
+        'Stripe integration developer',
+        'Web developer portfolio',
+      ]
 
   return {
     title: {
@@ -47,6 +72,7 @@ export async function generateMetadata({
       template: `%s | Jorge Morelo`,
     },
     description,
+    keywords,
     authors: [{ name: 'Jorge Andrés Morelo Hinestroza' }],
     creator: 'Jorge Andrés Morelo Hinestroza',
     metadataBase: new URL(BASE),
@@ -71,8 +97,8 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: isEs
-            ? 'Jorge Morelo — Desarrollador de Software'
-            : 'Jorge Morelo — Software Developer',
+            ? 'Jorge Morelo — Desarrollador Next.js & Frontend Engineer, Colombia'
+            : 'Jorge Morelo — Next.js Developer & Frontend Engineer, Colombia',
         },
       ],
     },
