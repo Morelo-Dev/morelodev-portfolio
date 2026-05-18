@@ -135,7 +135,22 @@ export default async function BlogPostPage({ params }: Props) {
           </a>
         </div>
       ) : (
-        <PortableTextContent body={(post.body ?? []) as PortableTextBlock[]} />
+        <>
+          {post.data.videoUrl && (
+            <div className="mb-8 overflow-hidden rounded-2xl">
+              <div className="relative aspect-video w-full">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${new URL(post.data.videoUrl as string).searchParams.get('v') ?? (post.data.videoUrl as string).split('/').pop()}`}
+                  title={post.data.title as string}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full rounded-2xl border-0"
+                />
+              </div>
+            </div>
+          )}
+          <PortableTextContent body={(post.body ?? []) as PortableTextBlock[]} />
+        </>
       )}
 
       {post.data.downloadUrl && !isComingSoon && (
