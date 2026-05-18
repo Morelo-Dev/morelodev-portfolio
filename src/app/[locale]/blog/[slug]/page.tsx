@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Clock, Lock, Download, Play, ShoppingCart } from 'lucide-react'
-import { getLocale } from 'next-intl/server'
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
 import PortableTextContent from '@/components/blog/PortableTextContent'
 import type { PortableTextBlock } from '@portabletext/types'
@@ -31,11 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const post = await getPostBySlug(slug)
   if (!post) notFound()
-
-  const locale = await getLocale()
   const isComingSoon = post.data.comingSoon === true
 
   return (
