@@ -115,7 +115,14 @@ export const post = defineType({
       group: 'content',
       of: [
         {type: 'block'},
-        {type: 'image', options: {hotspot: true}},
+        {
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({name: 'alt', title: 'Texto alternativo', type: 'string'}),
+            defineField({name: 'caption', title: 'Pie de foto / referencia', type: 'string'}),
+          ],
+        },
         {
           type: 'code',
           options: {
