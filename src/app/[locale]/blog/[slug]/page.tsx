@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Header */}
       <header className="mb-8">
         <div className="mb-4 flex flex-wrap items-center gap-2">
-          {(post.data.tags as string[]).map((tag: string) => (
+          {((post.data.tags as string[]) ?? []).map((tag: string) => (
             <span
               key={tag}
               className="rounded-full bg-zinc-100 px-2.5 py-0.5 font-mono text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"

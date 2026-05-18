@@ -14,22 +14,31 @@ function estimateReadingTime(body: unknown[]): number {
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] })[]>(ALL_POSTS_QUERY)
-  return raw.map((p) => ({
-    ...p,
-    readingTime: estimateReadingTime(p.body ?? []),
-  }))
+  try {
+    const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] })[]>(ALL_POSTS_QUERY)
+    return (raw ?? []).map((p) => ({
+      ...p,
+      tags: p.tags ?? [],
+      readingTime: estimateReadingTime(p.body ?? []),
+    }))
+  } catch {
+    return []
+  }
 }
 
 export async function getPostBySlug(slug: string) {
-  const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] }) | null>(
-    POST_BY_SLUG_QUERY,
-    { slug }
-  )
-  if (!raw) return null
-  return {
-    data: raw,
-    body: raw.body ?? [],
-    readingTime: estimateReadingTime(raw.body ?? []),
+  try {
+    const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] }) | null>(
+      POST_BY_SLUG_QUERY,
+      { slug }
+    )
+    if (!raw) return null
+    return {
+      data: { ...raw, tags: raw.tags ?? [] },
+      body: raw.body ?? [],
+      readingTime: estimateReadingTime(raw.body ?? []),
+    }
+  } catch {
+    return null
   }
 }
