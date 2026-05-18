@@ -4,31 +4,32 @@ import Link from 'next/link'
 import { ArrowLeft, Clock, Lock, Download, Play, ShoppingCart } from 'lucide-react'
 import { getLocale } from 'next-intl/server'
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
-import MDXContent from '@/components/blog/MDXContent'
-import 'highlight.js/styles/github-dark.css'
+import PortableTextContent from '@/components/blog/PortableTextContent'
+import type { PortableTextBlock } from '@portabletext/types'
 
 type Props = { params: Promise<{ slug: string; locale: string }> }
 
 export async function generateStaticParams() {
-  return getAllPosts()
-    .filter((p) => p.published)
-    .map((p) => ({ slug: p.slug }))
+  const posts = await getAllPosts()
+  return posts.filter((p) => p.published).map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   if (!post) return {}
   return {
     title: post.data.title,
     description: post.data.excerpt,
-    openGraph: post.data.coverImage ? { images: [{ url: post.data.coverImage }] } : undefined,
+    openGraph: post.data.coverImage
+      ? { images: [{ url: post.data.coverImage as string }] }
+      : undefined,
   }
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   if (!post) notFound()
 
   const locale = await getLocale()
@@ -58,7 +59,6 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Header */}
       <header className="mb-8">
-        {/* Badges & type */}
         <div className="mb-4 flex flex-wrap items-center gap-2">
           {(post.data.tags as string[]).map((tag: string) => (
             <span
@@ -89,23 +89,19 @@ export default async function BlogPostPage({ params }: Props) {
           >
             {new Date(post.data.date as string).toLocaleDateString(
               locale === 'es' ? 'es-CO' : 'en-US',
-              {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              }
+              { year: 'numeric', month: 'long', day: 'numeric' }
             )}
           </time>
           <span className="flex items-center gap-1 font-mono text-sm text-zinc-400 dark:text-zinc-600">
             <Clock size={13} aria-hidden="true" />
             {post.readingTime} {locale === 'es' ? 'min de lectura' : 'min read'}
           </span>
-          {post.data.price === 0 && (
+          {(post.data.price as number) === 0 && (
             <span className="rounded-full bg-green-100 px-2.5 py-0.5 font-mono text-xs font-semibold text-green-700 dark:bg-green-900/40 dark:text-green-400">
               {locale === 'es' ? 'Gratis' : 'Free'}
             </span>
           )}
-          {post.data.price > 0 && (
+          {(post.data.price as number) > 0 && (
             <span className="rounded-full bg-purple-100 px-2.5 py-0.5 font-mono text-xs font-semibold text-purple-700 dark:bg-purple-900/40 dark:text-purple-400">
               {post.data.priceLabel as string}
             </span>
@@ -115,7 +111,6 @@ export default async function BlogPostPage({ params }: Props) {
 
       <hr className="mb-8 border-zinc-100 dark:border-zinc-800" />
 
-      {/* Coming soon wall */}
       {isComingSoon ? (
         <div className="flex flex-col items-center gap-4 rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 py-20 text-center dark:border-zinc-700 dark:bg-zinc-900">
           <Lock size={32} className="text-zinc-400" />
@@ -137,18 +132,15 @@ export default async function BlogPostPage({ params }: Props) {
           </a>
         </div>
       ) : (
-        /* Contenido MDX */
-        <article className="prose prose-zinc dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-blue-600 prose-code:rounded prose-code:bg-zinc-100 prose-code:px-1 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm dark:prose-a:text-blue-400 dark:prose-code:bg-zinc-800 prose-pre:bg-zinc-950 prose-pre:p-0 max-w-none">
-          <MDXContent source={post.content} />
-        </article>
+        <PortableTextContent body={(post.body ?? []) as PortableTextBlock[]} />
       )}
 
-      {/* Download button standalone */}
       {post.data.downloadUrl && !isComingSoon && (
         <div className="mt-10 border-t border-zinc-100 pt-8 dark:border-zinc-800">
           <a
             href={post.data.downloadUrl as string}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700"
           >
             <Download size={16} />

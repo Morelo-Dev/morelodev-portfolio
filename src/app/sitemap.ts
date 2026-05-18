@@ -6,7 +6,7 @@ const BASE = SITE_URL
 const LOCALES = ['es', 'en']
 const ROUTES = ['', '/experience', '/projects', '/skills', '/blog', '/contact']
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = LOCALES.flatMap((locale) =>
     ROUTES.map((route) => ({
       url: `${BASE}/${locale}${route}`,
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
-  const posts = getAllPosts()
+  const posts = await getAllPosts()
   const blogPages = LOCALES.flatMap((locale) =>
     posts.map((post) => ({
       url: `${BASE}/${locale}/blog/${post.slug}`,

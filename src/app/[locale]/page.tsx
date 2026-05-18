@@ -8,8 +8,8 @@ import BlogPreview from '@/components/sections/BlogPreview'
 import Contact from '@/components/sections/Contact'
 import { getAllPosts } from '@/lib/blog'
 
-export default function HomePage() {
-  const posts = getAllPosts()
+export default async function HomePage() {
+  const posts = await getAllPosts()
 
   return (
     <main id="main-content">

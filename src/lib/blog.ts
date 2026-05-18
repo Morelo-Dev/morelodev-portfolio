@@ -1,54 +1,35 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import readingTime from 'reading-time'
+import { sanityClient } from './sanity/client'
+import { ALL_POSTS_QUERY, POST_BY_SLUG_QUERY } from './sanity/queries'
 import type { BlogPost } from '@/types'
 
-const CONTENT_DIR = path.join(process.cwd(), 'content/blog')
+function estimateReadingTime(body: unknown[]): number {
+  if (!Array.isArray(body)) return 1
+  const text = body
+    .filter((b: unknown) => (b as { _type: string })._type === 'block')
+    .flatMap((b: unknown) =>
+      ((b as { children?: { text?: string }[] }).children ?? []).map((c) => c.text ?? '')
+    )
+    .join(' ')
+  return Math.max(1, Math.ceil(text.split(/\s+/).length / 200))
+}
 
-function parsePost(file: string): BlogPost {
-  const slug = file.replace(/\.mdx$/, '')
-  const raw = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf-8')
-  const { data, content } = matter(raw)
-  const rt = readingTime(content)
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] })[]>(ALL_POSTS_QUERY)
+  return raw.map((p) => ({
+    ...p,
+    readingTime: estimateReadingTime(p.body ?? []),
+  }))
+}
 
+export async function getPostBySlug(slug: string) {
+  const raw = await sanityClient.fetch<(BlogPost & { body?: unknown[] }) | null>(
+    POST_BY_SLUG_QUERY,
+    { slug }
+  )
+  if (!raw) return null
   return {
-    slug,
-    title: data.title as string,
-    excerpt: data.excerpt as string,
-    date: data.date as string,
-    readingTime: Math.ceil(rt.minutes),
-    tags: (data.tags as string[]) ?? [],
-    published: (data.published as boolean) ?? true,
-    comingSoon: (data.comingSoon as boolean) ?? false,
-    badge: data.badge ?? undefined,
-    type: data.type ?? 'article',
-    featured: (data.featured as boolean) ?? false,
-    coverImage: data.coverImage ?? undefined,
-    videoUrl: data.videoUrl ?? undefined,
-    downloadUrl: data.downloadUrl ?? undefined,
-    downloadLabel: data.downloadLabel ?? undefined,
-    price: data.price ?? null,
-    priceLabel: data.priceLabel ?? undefined,
+    data: raw,
+    body: raw.body ?? [],
+    readingTime: estimateReadingTime(raw.body ?? []),
   }
-}
-
-export function getAllPosts(): BlogPost[] {
-  if (!fs.existsSync(CONTENT_DIR)) return []
-
-  const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.mdx'))
-
-  return files
-    .map(parsePost)
-    .filter((p) => p.published || p.comingSoon)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-}
-
-export function getPostBySlug(slug: string) {
-  const file = path.join(CONTENT_DIR, `${slug}.mdx`)
-  if (!fs.existsSync(file)) return null
-  const raw = fs.readFileSync(file, 'utf-8')
-  const { data, content } = matter(raw)
-  const rt = readingTime(content)
-  return { data, content, readingTime: Math.ceil(rt.minutes) }
 }
