@@ -11,7 +11,10 @@
       "Bash(node *)",
       "Bash(npm --version)",
       "Bash(pnpm add *)",
-      "Bash(pnpm tsc *)"
+      "Bash(pnpm tsc *)",
+      "Bash(git commit *)",
+      "Bash(pnpm dev *)",
+      "Bash(pnpm list *)"
     ]
   }
 }
