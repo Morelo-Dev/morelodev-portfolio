@@ -6,13 +6,14 @@ import { ThemeProvider } from 'next-themes'
 import { notFound } from 'next/navigation'
 import { hasLocale } from 'next-intl'
 import { locales } from '@/lib/i18n'
+import { SITE_URL } from '@/lib/config'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import JsonLd from '@/components/JsonLd'
 import FloatingChat from '@/components/FloatingChat'
 import '../globals.css'
 
-const BASE = 'https://morelodev.com'
+const BASE = SITE_URL
 
 const inter = Inter({
   subsets: ['latin'],

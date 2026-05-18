@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog'
+import { SITE_URL } from '@/lib/config'
 
-const BASE = 'https://morelodev.com'
+const BASE = SITE_URL
 const LOCALES = ['es', 'en']
 const ROUTES = ['', '/experience', '/projects', '/skills', '/blog', '/contact']
 

@@ -1,3 +1,5 @@
+import { SITE_URL } from '@/lib/config'
+
 export default function JsonLd() {
   const schema = {
     '@context': 'https://schema.org',
@@ -5,7 +7,7 @@ export default function JsonLd() {
     name: 'Jorge Andrés Morelo Hinestroza',
     alternateName: 'morelodev',
     jobTitle: 'Software Developer',
-    url: 'https://morelodev-portfolio.vercel.app',
+    url: SITE_URL,
     sameAs: ['https://github.com/Morelo-Dev', 'https://www.linkedin.com/in/morelodev/'],
     knowsAbout: ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
     nationality: { '@type': 'Country', name: 'Colombia' },

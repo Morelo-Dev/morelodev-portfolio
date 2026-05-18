@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://morelodev.com'
 
   const date = new Date().toLocaleString('es-CO', {
     timeZone: 'America/Bogota',
@@ -239,7 +240,7 @@ export async function POST(req: NextRequest) {
                   </a>
                 </td>
                 <td style="padding-left:12px;">
-                  <a href="https://morelodev-portfolio.vercel.app"
+                  <a href="${siteUrl}"
                      style="display:inline-block;background:#111318;border:1px solid #1e2330;
                             color:#94a3b8;font-size:13px;text-decoration:none;
                             padding:13px 24px;border-radius:10px;">
@@ -284,7 +285,7 @@ export async function POST(req: NextRequest) {
 
             <p style="margin:20px 0 0;font-size:10px;color:#1e2330;padding-bottom:32px;">
               Este correo fue generado automáticamente desde el formulario de contacto de
-              morelodev-portfolio.vercel.app. No respondas directamente a este mensaje.
+              ${siteUrl}. No respondas directamente a este mensaje.
             </p>
           </td>
         </tr>
