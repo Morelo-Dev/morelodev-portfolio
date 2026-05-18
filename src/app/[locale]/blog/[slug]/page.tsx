@@ -7,6 +7,9 @@ import { getAllPosts, getPostBySlug } from '@/lib/blog'
 import PortableTextContent from '@/components/blog/PortableTextContent'
 import type { PortableTextBlock } from '@portabletext/types'
 
+export const dynamicParams = true
+export const revalidate = 60
+
 type Props = { params: Promise<{ slug: string; locale: string }> }
 
 export async function generateStaticParams() {

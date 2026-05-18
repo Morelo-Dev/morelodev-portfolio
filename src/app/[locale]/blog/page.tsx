@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { getAllPosts } from '@/lib/blog'
