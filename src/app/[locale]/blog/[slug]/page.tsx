@@ -13,7 +13,10 @@ type Props = { params: Promise<{ slug: string; locale: string }> }
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.filter((p) => p.published).map((p) => ({ slug: p.slug }))
+  const locales = ['es', 'en']
+  return posts
+    .filter((p) => p.published)
+    .flatMap((p) => locales.map((locale) => ({ locale, slug: p.slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
