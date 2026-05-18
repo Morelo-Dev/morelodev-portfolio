@@ -10,6 +10,8 @@ export default defineConfig({
 
   projectId: 'uht0sj7a',
   dataset: 'production',
+  // @ts-expect-error deployment config
+  deployment: {appId: 'hq05l1t5i3qrnm23wnbpn44x'},
 
   plugins: [structureTool(), visionTool(), codeInput()],
 
